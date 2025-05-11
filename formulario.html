@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CosturArtes - Contacto</title>
+  <link rel="stylesheet" href="formulario.css"/>
+   <script type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script type="text/javascript">
+  emailjs.init('hl6udJXE-rQ6HqOis')
+</script>
+</head>
+<body>
+
+  <div class="formulario-container">
+    <h2>Contáctanos</h2>
+    <form id="form">
+  <div class="field">
+    <label for="name">Nombre Completo</label>
+    <input type="text" name="name" id="name">
+  </div>
+  <div class="field">
+    <label for="Telefono">Telefono</label>
+    <input type="text" name="Telefono" id="Telefono">
+  </div>
+  <div class="field">
+    <label for="message">Mensaje</label>
+    <input type="text" name="message" id="message" requeried>
+  </div>
+  <div class="field">
+    <label for="email">Correo electronico</label>
+    <input type="text" name="email" id="email">
+  </div>
+
+  <input type="submit" id="button" value="Enviar" >
+</form> 
+  </div>
+
+</body>
+
+<script>
+    const btn = document.getElementById('button');
+
+document.getElementById('form')
+ .addEventListener('submit', function(event) {
+   event.preventDefault();
+
+   btn.value = 'Enviando...';
+
+   const serviceID = 'default_service';
+   const templateID = 'template_1elrv9f';
+
+   emailjs.sendForm(serviceID, templateID, this)
+    .then(() => {
+      btn.value = 'Enviado';
+      alert('Enviado, Espere a que le respondamos.');
+    }, (err) => {
+      btn.value = 'Enviado';
+      alert(JSON.stringify(err));
+    });
+});
+</script>
+</html>
